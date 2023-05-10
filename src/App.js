@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Header from './components/Header';
 import Home from './components/Home';
 import { items } from './items';
