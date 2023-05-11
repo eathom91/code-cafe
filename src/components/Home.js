@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import Thumbnail from './Thumbnail';
 import { itemImages } from '../items';
