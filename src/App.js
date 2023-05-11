@@ -1,14 +1,29 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
-import { items } from './items';
 
 function App() {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    axios.get('/api/items')
+      .then((result) => setItems(result.data))
+      .catch(console.error);
+  }, []);
+
   return (
-    <div className="App">
+    <Router>
       <Header />
-      <Home items={items} />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home items={items} />} />
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
+    </Router>
   );
 }
 
