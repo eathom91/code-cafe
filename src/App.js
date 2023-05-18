@@ -9,9 +9,11 @@ import Header from './components/Header';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import Details from './components/Details';
+import DetailItem from './components/DetailItem';
 
 function App() {
   const [items, setItems] = useState([]);
+  // This react hook takes two arguments: callback function, and dep. array
   useEffect(() => {
     axios.get('/api/items')
       .then((result) => setItems(result.data))
@@ -23,7 +25,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/details" element={<Details items={items} />}>
-          <Route path=":id" element={<div>Detail Item</div>} />
+          <Route path=":id" element={<DetailItem />} />
+          <Route index element={<div>No Item Selected</div>} />
         </Route>
         <Route path="/" element={<Home items={items} />} />
         <Route path="*" element={<NotFound />} />
